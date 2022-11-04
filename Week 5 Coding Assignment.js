@@ -146,7 +146,8 @@ class Menu { //Menu that will drive the application and available choices.
     }
 
     deleteOeuvre() {
-        let index = prompt("Enter the index of the oeuvre you wish to delete:"); 
+        let index = prompt("Enter the index of the oeuvre you wish to delete:"); /*Prompt allows user to use the index number of the art piece
+        they want to delete.*/
         if (index > -1 && index < this.selectedArtist.oeuvres.length) { //Validating user using index to delete desired art piece.
             this.selectedArtist.oeuvres.splice(index, 1); //Element at position index is removed.
         }
