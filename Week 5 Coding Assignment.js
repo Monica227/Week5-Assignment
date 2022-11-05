@@ -4,12 +4,12 @@
 •	Your menu should have the options to create, view, and delete elements.*/
 
 //Single Entity
-class  Artwork { //Class 1 syntax.
+class  Oeuvre { //Class 1 syntax.
     constructor(title, price) { //Constructor function with two parameters.
         this.title = title;
         this.price = price;
     }
-    describe() { //Prints out info about the artwork.
+    describe() { //Prints out info about the Oevre (artwork or art piece).
         return `${this.title} costs ${this.price}.`;
     }
 }
@@ -18,21 +18,21 @@ class  Artwork { //Class 1 syntax.
 class Artist { //Class 2 syntax since question asked for two classes to be used. 
     constructor(name) { //Constructor function with one parameter.
         this.name = name; 
-        this.artwork = []; /*Each time an artist is inputed an array will hold the art pieces for that artist so when a new artist is
+        this.oeuvres = []; /*Each time an artist is inputed an array will hold the art pieces for that artist so when a new artist is
        added a blank array will show up. Also array for art pieces was created since question asked for one array to be created.*/
     }
 
-    addArtwork(artwork) {
-        if (artwork instanceof Artwork) { //instanceOf operator checks that art piece (object) belongs to art piece class. 
-            this.artwork.push(artwork); //Pushes the art piece to the art pieces array.
+    addOeuvre(oeuvre) {
+        if (oeuvre instanceof Oeuvre) { //instanceOf operator checks that art piece (object) belongs to art piece class. 
+            this.oeuvre.push(oeuvre); //Pushes the art piece to the art pieces array.
         } else {
-            throw new Error(`You can only add an instance of Artwork. Arguement is not a Artwork: ${oeuvre}`); /*Exception or error
+            throw new Error(`You can only add an instance of Oeuvre. Arguement is not a Oeuvre: ${oeuvre}`); /*Exception or error
             message that will tell the user what they did wrong.*/
         }
     }
 
     describe() { //Prints out the info about the artist.
-        return `${this.name} has ${this.artworks.length} artworks.`;
+        return `${this.name} has ${this.oeuvres.length} oeuvres.`;
     }
 }
 
@@ -83,8 +83,8 @@ class Menu { //Menu that will drive the application and available choices.
     showArtistMenuOptions(artistInfo) { //Takes artist description and prints out information for it.
         return prompt(`
         0) back
-        1) create artwork
-        2) delete artwork
+        1) create oeuvre
+        2) delete oeuvre
         ------------------
         ${artistInfo}
         `)
@@ -111,10 +111,10 @@ class Menu { //Menu that will drive the application and available choices.
             this.selectedArtist = this.artists[index]; //Validated index and set artist class property to the artist user inserted.
             let description = "Artist Name:" + this.selectedArtist.name + "\n"; //Description for the artist to print out.
 
-            for (let i = 0; i < this.selectedArtist.artworks.length; i++) { /*Loop will add description of all the art pieces to the
+            for (let i = 0; i < this.selectedArtist.oeuvres.length; i++) { /*Loop will add description of all the art pieces to the
              artist.*/
-                description += i + ") " + this.selectedArtist.artworks[i].title
-                 + " - " + this.selectedArtist.artworks[i].price + "\n"; /*Description will include index printed out, array for art
+                description += i + ") " + this.selectedArtist.oeuvres[i].title
+                 + " - " + this.selectedArtist.oeuvres[i].price + "\n"; /*Description will include index printed out, array for art
                  pieces for each artist which will be iterated, i serves as the specific art piece for the iteration and their name 
                  and price will be printed out all on a new line.*/ //Build list of all the artist pieces.
             }
@@ -123,10 +123,10 @@ class Menu { //Menu that will drive the application and available choices.
             switch (selection) { /*Switch selection is created for sub menu. Again depending on which number the user chooses either
             a create or delete option will appear.*/
                 case "1" :
-                    this.createArtwork();
+                    this.createOeuvre();
                     break;
                     case "2" :
-                        this.deleteArtwork();
+                        this.deleteOeuvre();
             }
         }
     }
@@ -138,18 +138,18 @@ class Menu { //Menu that will drive the application and available choices.
         }
     }
 
-    createArtwork() {
-        let title = prompt("Enter title for artwork:"); //Prompt allows user to enter title for art piece.
-        let price = prompt("Enter price for new artwork:"); //Allows user to enter price for art piece.
-        this.selectedArtist.artworks.push(new Artwork(title, price)); /*Instance is created for art piece and pushed to whatever artist 
+    createOeuvre() {
+        let title = prompt("Enter title for oeuvre:"); //Prompt allows user to enter title for art piece.
+        let price = prompt("Enter price for new oeuvre:"); //Allows user to enter price for art piece.
+        this.selectedArtist.oeuvres.push(new Oeuvre(title, price)); /*Instance is created for art piece and pushed to whatever artist 
         is selected.*/
     }
 
-    deleteArtwork() {
-        let index = prompt("Enter the index of the artwork you wish to delete:"); /*Prompt allows user to use index to delete desired
+    deleteOeuvre() {
+        let index = prompt("Enter the index of the oeuvre you wish to delete:"); /*Prompt allows user to use index to delete desired
          art piece.*/
-        if (index > -1 && index < this.selectedArtist.artworks.length) { //Validating user using index to delete desired art piece.
-            this.selectedArtist.artworks.splice(index, 1); //Element at position index is removed.
+        if (index > -1 && index < this.selectedArtist.oeuvres.length) { //Validating user using index to delete desired art piece.
+            this.selectedArtist.oeuvres.splice(index, 1); //Element at position index is removed.
         }
     }
 }
